@@ -1,59 +1,196 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ScopeFlow client change request and approval portal demo">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ScopeFlow is a client change request and approval portal with cost estimation, overdue alerts, activity history, and backups.">
 <title>ScopeFlow — Client Request Portal</title>
 <style>
-:root{--bg:#f4f6fb;--panel:#fff;--text:#192334;--muted:#687589;--line:#e3e8f0;--accent:#6258d9;--soft:#efedff;--green:#16845b;--greenbg:#e4f7ed;--amber:#986300;--amberbg:#fff2d0;--red:#b83245;--redbg:#ffeaed;--shadow:0 8px 26px #24304b0c}
-[data-theme=dark]{--bg:#111827;--panel:#1c2636;--text:#edf2fb;--muted:#a4b0c2;--line:#303d50;--accent:#a59cff;--soft:#302d50;--green:#65d7a4;--greenbg:#173d32;--amber:#ffd27a;--amberbg:#49391e;--red:#ff9aa5;--redbg:#48252d;--shadow:0 8px 26px #0002}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-columns:238px 1fr}.side{background:var(--panel);border-right:1px solid var(--line);padding:25px 16px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:10px;padding:0 8px}.logo{display:grid;place-items:center;width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#8c80ff,#5146c8);color:white;font-size:20px;font-weight:900}.brand strong{font-size:18px;letter-spacing:-.5px}.brand small{display:block;color:var(--muted);font-size:11px}.navlabel{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:800;padding:0 12px;margin-bottom:7px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:11px 12px;border-radius:10px;font-weight:650}.nav button.active,.nav button:hover{background:var(--soft);color:var(--accent)}.nav button span{display:inline-block;width:26px}.sidecard{margin-top:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.sidecard p{font-size:12px;color:var(--muted);margin:5px 0 0}.main{min-width:0}.top{height:72px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:12px}.crumb{font-size:12px;color:var(--muted)}.crumb b{color:var(--text)}.actions{display:flex;gap:9px;align-items:center}.avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--accent);font-weight:800}.content{max-width:1450px;margin:auto;padding:28px 30px 40px}.view{display:none}.view.active{display:block}.welcome{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:23px}.welcome h1{font-size:27px;line-height:1.2;letter-spacing:-.8px;margin:0 0 7px}.welcome p{color:var(--muted);margin:0}.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:9px 13px;font-weight:700}.btn:hover{border-color:var(--accent);color:var(--accent)}.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.small{font-size:12px;padding:6px 9px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:21px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:18px}.stathead{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650}.staticon{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:16px}.statnum{font-size:29px;font-weight:850;letter-spacing:-1px;margin:12px 0 1px}.statfoot{font-size:11px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,1fr);gap:18px}.panel{padding:20px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panelhead h2{font-size:16px;margin:0}.panelhead p{font-size:12px;color:var(--muted);margin:4px 0 0}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.field{min-width:0;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 11px;border-radius:9px;outline:none}.field:focus{border-color:var(--accent)}.search{flex:1;min-width:170px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:610px}th{text-align:left;color:var(--muted);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:11px 9px;border-bottom:1px solid var(--line)}td{padding:13px 9px;border-bottom:1px solid var(--line);vertical-align:middle}tr:last-child td{border-bottom:0}tbody tr:hover{background:var(--bg)}.reqtitle{display:block;font-weight:750}.reqid,.sub{font-size:11px;color:var(--muted)}.pill{display:inline-block;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800;background:var(--bg);color:var(--muted);white-space:nowrap}.pill.Pending{background:var(--amberbg);color:var(--amber)}.pill.Approved{background:var(--greenbg);color:var(--green)}.pill.Rejected{background:var(--redbg);color:var(--red)}.pill.In-progress{background:var(--soft);color:var(--accent)}.empty{text-align:center;color:var(--muted);padding:28px}.progressrow{margin:16px 0}.progresslabel{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;font-size:12px}.track{height:7px;border-radius:10px;background:var(--bg);overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:10px}.activity{display:grid;gap:17px}.activityitem{display:grid;grid-template-columns:32px 1fr;gap:10px}.activityicon{height:31px;width:31px;display:grid;place-items:center;background:var(--soft);color:var(--accent);border-radius:10px}.activityitem p{margin:0 0 3px;font-size:12px}.activityitem small{font-size:10px;color:var(--muted)}.quicklinks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.quick{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;text-align:left;color:var(--text)}.quick:hover{border-color:var(--accent)}.quick strong{display:block;margin:7px 0 3px}.quick span{color:var(--muted);font-size:11px}.sectiontitle{font-size:22px;margin:0 0 4px}.formgrid,.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.group{display:grid;gap:6px}.group.full{grid-column:1/-1}.group label{font-size:12px;font-weight:750}.group textarea{resize:vertical;min-height:88px}.modalback{position:fixed;inset:0;background:#10182888;z-index:20;display:none;align-items:center;justify-content:center;padding:18px}.modalback.open{display:flex}.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;width:min(650px,100%);max-height:92vh;overflow:auto;padding:23px;box-shadow:0 25px 80px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modalhead h2{margin:0;font-size:20px}.close{border:0;background:var(--bg);color:var(--text);border-radius:8px;padding:7px 10px}.formactions,.detailactions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}.detailbox{padding:12px;border-radius:10px;background:var(--bg)}.detailbox small{display:block;color:var(--muted);font-size:11px}.detailbox strong{display:block;margin-top:4px}.desc{white-space:pre-wrap;color:var(--muted);margin:15px 0}.toast{position:fixed;bottom:20px;right:20px;background:var(--text);color:var(--panel);padding:12px 16px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:30}.toast.show{opacity:1;transform:translateY(0)}.footnote{text-align:center;color:var(--muted);font-size:11px;margin-top:22px}.mobilemenu{display:none}
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.content{padding:24px 20px}.top{padding:0 20px}}
-@media(max-width:700px){.app{display:block}.side{position:fixed;inset:0 auto 0 0;width:245px;z-index:15;transform:translateX(-105%);transition:.2s;box-shadow:var(--shadow)}.side.open{transform:translateX(0)}.mobilemenu{display:inline-block}.top{height:64px;padding:0 13px}.content{padding:20px 13px}.welcome{flex-direction:column}.welcome h1{font-size:24px}.stats{gap:9px}.stat{padding:13px}.statnum{font-size:25px}.stathead{font-size:11px}.panel{padding:14px}.quicklinks{grid-template-columns:1fr}.formgrid,.detailgrid{grid-template-columns:1fr}.group.full{grid-column:auto}.hide-mobile{display:none}}
+:root{color-scheme:light;--bg:#f4f6fb;--panel:#fff;--text:#192334;--muted:#687589;--line:#e3e8f0;--accent:#6258d9;--soft:#efedff;--green:#16845b;--greenbg:#e4f7ed;--amber:#986300;--amberbg:#fff2d0;--red:#b83245;--redbg:#ffeaed;--shadow:0 8px 26px #24304b0c}
+[data-theme="dark"]{color-scheme:dark;--bg:#111827;--panel:#1c2636;--text:#edf2fb;--muted:#a4b0c2;--line:#303d50;--accent:#a59cff;--soft:#302d50;--green:#65d7a4;--greenbg:#173d32;--amber:#ffd27a;--amberbg:#49391e;--red:#ff9aa5;--redbg:#48252d;--shadow:0 8px 26px #0002}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}.app{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}.side{background:var(--panel);border-right:1px solid var(--line);padding:25px 16px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;align-items:center;gap:10px;padding:0 8px}.logo{display:grid;place-items:center;width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#8c80ff,#5146c8);color:#fff;font-size:20px;font-weight:900}.brand strong{font-size:18px;letter-spacing:-.5px}.brand small{display:block;color:var(--muted);font-size:11px}.navlabel{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:800;padding:0 12px;margin-bottom:7px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:11px 12px;border-radius:10px;font-weight:650}.nav button.active,.nav button:hover{background:var(--soft);color:var(--accent)}.nav button span{display:inline-block;width:26px}.sidecard{margin-top:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.sidecard p{font-size:12px;color:var(--muted);margin:5px 0 0}.main{min-width:0}.top{min-height:72px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 30px;gap:12px}.crumb{font-size:12px;color:var(--muted)}.crumb b{color:var(--text)}.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--accent);font-weight:800}.content{max-width:1450px;margin:auto;padding:28px 30px 40px}.view{display:none}.view.active{display:block}.welcome{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:23px}.welcome h1{font-size:27px;line-height:1.2;letter-spacing:-.8px;margin:0 0 7px}.welcome p{color:var(--muted);margin:0}.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:9px 13px;font-weight:700}.btn:hover{border-color:var(--accent);color:var(--accent)}.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.small{font-size:12px;padding:6px 9px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:21px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:18px}.stathead{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650;gap:8px}.staticon{width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-size:16px;flex-shrink:0}.statnum{font-size:29px;font-weight:850;letter-spacing:-1px;margin:12px 0 1px}.statfoot{font-size:11px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,1fr);gap:18px}.panel{padding:20px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panelhead h2{font-size:16px;margin:0}.panelhead p{font-size:12px;color:var(--muted);margin:4px 0 0}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.field{min-width:0;width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 11px;border-radius:9px;outline:none}.field:focus{border-color:var(--accent)}.search{flex:1;min-width:170px;width:auto}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:610px}th{text-align:left;color:var(--muted);font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:11px 9px;border-bottom:1px solid var(--line)}td{padding:13px 9px;border-bottom:1px solid var(--line);vertical-align:middle}tr:last-child td{border-bottom:0}tbody tr:hover{background:var(--bg)}.reqtitle{display:block;font-weight:750}.reqid,.sub{font-size:11px;color:var(--muted)}.pill{display:inline-block;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800;background:var(--bg);color:var(--muted);white-space:nowrap}.pill.Pending{background:var(--amberbg);color:var(--amber)}.pill.Approved{background:var(--greenbg);color:var(--green)}.pill.Rejected{background:var(--redbg);color:var(--red)}.pill.In-progress{background:var(--soft);color:var(--accent)}.pill.High{background:var(--redbg);color:var(--red)}.pill.Medium{background:var(--amberbg);color:var(--amber)}.pill.Low{background:var(--greenbg);color:var(--green)}.pill.Overdue{background:var(--redbg);color:var(--red)}.empty{text-align:center;color:var(--muted);padding:28px}.progressrow{margin:16px 0}.progresslabel{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;font-size:12px}.track{height:7px;border-radius:10px;background:var(--bg);overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:10px}.activity{display:grid;gap:17px}.activityitem{display:grid;grid-template-columns:32px 1fr;gap:10px}.activityicon{height:31px;width:31px;display:grid;place-items:center;background:var(--soft);color:var(--accent);border-radius:10px}.activityitem p{margin:0 0 3px;font-size:12px;overflow-wrap:anywhere}.activityitem small{font-size:10px;color:var(--muted)}.quicklinks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.quick{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;text-align:left;color:var(--text)}.quick:hover{border-color:var(--accent)}.quick strong{display:block;margin:7px 0 3px}.quick span{color:var(--muted);font-size:11px}.sectiontitle{font-size:22px;margin:0 0 4px}.formgrid,.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.group{display:grid;gap:6px;min-width:0}.group.full{grid-column:1/-1}.group label{font-size:12px;font-weight:750}.group textarea{resize:vertical;min-height:88px}.modalback{position:fixed;inset:0;background:#10182888;z-index:20;display:none;align-items:center;justify-content:center;padding:18px}.modalback.open{display:flex}.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;width:min(650px,100%);max-height:92vh;overflow:auto;padding:23px;box-shadow:0 25px 80px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px}.modalhead h2{margin:0;font-size:20px;overflow-wrap:anywhere}.close{border:0;background:var(--bg);color:var(--text);border-radius:8px;padding:7px 10px}.formactions,.detailactions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}.detailbox{padding:12px;border-radius:10px;background:var(--bg);min-width:0;overflow-wrap:anywhere}.detailbox small{display:block;color:var(--muted);font-size:11px}.detailbox strong{display:block;margin-top:4px}.desc{white-space:pre-wrap;color:var(--muted);margin:15px 0;overflow-wrap:anywhere}.toast{position:fixed;bottom:20px;right:20px;background:var(--text);color:var(--panel);padding:12px 16px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:30;max-width:min(90vw,420px)}.toast.show{opacity:1;transform:translateY(0)}.footnote{text-align:center;color:var(--muted);font-size:11px;margin-top:22px}.alertbanner{border:1px solid var(--red);background:var(--redbg);color:var(--red);border-radius:11px;padding:12px 15px;margin:-5px 0 20px;font-weight:700}.mobilemenu{display:none}[hidden]{display:none!important}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.content{padding:24px 20px}.top{padding:12px 20px}}
+@media(max-width:700px){.app{display:block}.side{position:fixed;inset:0 auto 0 0;width:245px;z-index:15;transform:translateX(-105%);transition:.2s;box-shadow:var(--shadow)}.side.open{transform:translateX(0)}.mobilemenu{display:inline-block}.top{min-height:64px;padding:10px 13px;align-items:flex-start}.top>.actions{justify-content:flex-end}.content{padding:20px 13px}.welcome{flex-direction:column}.welcome h1{font-size:24px}.stats{gap:9px}.stat{padding:13px}.statnum{font-size:25px}.stathead{font-size:11px}.panel{padding:14px}.quicklinks{grid-template-columns:1fr}.formgrid,.detailgrid{grid-template-columns:1fr}.group.full{grid-column:auto}.hide-mobile{display:none}.avatar{display:none}.modal{padding:17px}.actions{gap:5px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+/* ScopeFlow Modern Ocean theme: light workspace + deep navy navigation */
+:root{
+  color-scheme:light;
+  --bg:#f4f7fc;
+  --panel:#ffffff;
+  --text:#17233b;
+  --muted:#64728a;
+  --line:#e1e8f2;
+  --accent:#5146e5;
+  --soft:#eef0ff;
+  --green:#087f5b;
+  --greenbg:#d9f8ea;
+  --amber:#925b08;
+  --amberbg:#fff1c9;
+  --red:#b4233b;
+  --redbg:#ffe5e9;
+  --shadow:0 12px 34px rgba(23,35,59,.065);
+  --side-bg:#111a2e;
+  --side-text:#f4f7ff;
+  --side-muted:#a6b3cb;
+  --side-line:rgba(223,233,255,.10);
+  --side-active:#202e4b;
+  --side-accent:#65e6d2;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0b1220;
+  --panel:#141e31;
+  --text:#eff4ff;
+  --muted:#a4b1c8;
+  --line:#2b3850;
+  --accent:#9b8cff;
+  --soft:#282744;
+  --green:#6de4b4;
+  --greenbg:#153b34;
+  --amber:#ffd27d;
+  --amberbg:#49381f;
+  --red:#ff9aaa;
+  --redbg:#482530;
+  --shadow:0 14px 38px rgba(0,0,0,.22);
+  --side-bg:#080e1b;
+  --side-text:#f4f7ff;
+  --side-muted:#9eacc6;
+  --side-line:rgba(223,233,255,.09);
+  --side-active:#1b2943;
+  --side-accent:#65e6d2;
+}
+body{
+  background:
+    radial-gradient(ellipse at 92% 0%, color-mix(in srgb,var(--accent) 7%,transparent),transparent 34rem),
+    var(--bg);
+  transition:background-color .2s,color .2s;
+}
+.side{
+  background:var(--side-bg);
+  color:var(--side-text);
+  border-right-color:var(--side-line);
+  box-shadow:7px 0 28px rgba(10,20,40,.035);
+}
+.brand strong{color:var(--side-text);letter-spacing:-.55px}
+.brand small{color:var(--side-muted)}
+.logo{
+  background:linear-gradient(140deg,#43dfc6 0%,#4f67ed 62%,#805cf4 100%);
+  box-shadow:0 7px 18px rgba(79,103,237,.3);
+}
+.navlabel{color:var(--side-muted)}
+.nav button{color:var(--side-muted);transition:background .18s,color .18s,transform .18s}
+.nav button:hover{background:rgba(255,255,255,.055);color:var(--side-text);transform:translateX(2px)}
+.nav button.active,.nav button.active:hover{
+  color:var(--side-accent);
+  background:var(--side-active);
+  box-shadow:inset 3px 0 0 var(--side-accent);
+  transform:none;
+}
+.sidecard{
+  color:var(--side-text);
+  background:linear-gradient(145deg,rgba(101,230,210,.10),rgba(120,112,255,.08));
+  border-color:var(--side-line);
+}
+.sidecard p{color:var(--side-muted)}
+.top{
+  background:color-mix(in srgb,var(--panel) 92%,transparent);
+  backdrop-filter:blur(16px);
+  border-bottom-color:var(--line);
+}
+.btn{
+  transition:transform .16s,border-color .16s,background .16s,color .16s,box-shadow .16s;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn.primary,.btn.primary:hover{
+  color:#fff;
+  background:linear-gradient(125deg,var(--accent),color-mix(in srgb,var(--accent) 72%,#10b9b1));
+  border-color:transparent;
+  box-shadow:0 7px 16px color-mix(in srgb,var(--accent) 23%,transparent);
+}
+.btn.primary:hover{box-shadow:0 10px 22px color-mix(in srgb,var(--accent) 30%,transparent)}
+.stat,.panel,.quick{
+  box-shadow:var(--shadow);
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.stat:hover,.panel:hover,.quick:hover{
+  border-color:color-mix(in srgb,var(--accent) 28%,var(--line));
+  box-shadow:0 16px 38px color-mix(in srgb,var(--text) 7%,transparent);
+}
+.stat:hover,.quick:hover{transform:translateY(-2px)}
+.statnum{letter-spacing:-1.15px}
+.staticon,.activityicon,.avatar{
+  background:color-mix(in srgb,var(--accent) 11%,var(--panel));
+  color:var(--accent);
+}
+.quick{border-radius:14px}
+.quick>span:first-child{color:var(--accent)}
+.field{transition:border-color .15s,box-shadow .15s,background .15s}
+.field:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent)}
+th{background:color-mix(in srgb,var(--bg) 72%,var(--panel));}
+tbody tr:hover{background:color-mix(in srgb,var(--accent) 4%,var(--panel))}
+.fill{background:linear-gradient(90deg,var(--accent),#35cdb8)}
+.pill{letter-spacing:.1px}
+.pill.In-progress{background:color-mix(in srgb,var(--accent) 14%,var(--panel));color:var(--accent)}
+.modal{box-shadow:0 28px 90px rgba(4,12,28,.28);border-radius:20px}
+.modalback{background:rgba(5,12,27,.70);backdrop-filter:blur(5px)}
+.toast{box-shadow:0 14px 36px rgba(0,0,0,.22);border:1px solid color-mix(in srgb,var(--panel) 12%,transparent)}
+@media(prefers-reduced-motion:reduce){body,.btn,.nav button,.stat,.panel,.quick,.field{transition:none}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="side" id="sidebar">
-<div class="brand"><div class="logo">S</div><div><strong>ScopeFlow</strong><small>Client change management</small></div></div>
-<div><div class="navlabel">Workspace</div><nav class="nav">
-<button class="active" data-view="dashboard"><span>▦</span>Overview</button>
-<button data-view="requests"><span>☷</span>Change requests <b id="navCount" style="float:right">0</b></button>
-<button data-view="activity"><span>◷</span>Activity log</button></nav></div>
-<div><div class="navlabel">Manage</div><nav class="nav"><button data-action="export"><span>⇩</span>Export CSV</button><button data-action="reset"><span>↺</span>Reset demo data</button></nav></div>
-<div class="sidecard"><strong>Keep scope clear.</strong><p>Document changes, understand impact, and get approval before work begins.</p></div>
+ <div class="brand"><div class="logo">S</div><div><strong>ScopeFlow</strong><small>Client change management</small></div></div>
+ <div><div class="navlabel">Workspace</div><nav class="nav" aria-label="Workspace navigation">
+  <button class="active" data-view="dashboard"><span>▦</span>Overview</button>
+  <button data-view="requests"><span>☷</span>Change requests <b id="navCount" style="float:right">0</b></button>
+  <button data-view="activity"><span>◷</span>Activity log</button>
+ </nav></div>
+ <div><div class="navlabel">Manage</div><nav class="nav" aria-label="Data tools">
+  <button data-action="export"><span>⇩</span>Export CSV</button>
+  <button data-action="backup"><span>⬇</span>Backup data</button>
+  <button data-action="restore"><span>↥</span>Restore backup</button>
+  <input id="restoreInput" type="file" accept="application/json,.json" hidden>
+  <button data-action="reset"><span>↺</span>Reset demo data</button>
+ </nav></div>
+ <div class="sidecard"><strong>Keep scope clear.</strong><p>Document changes, understand impact, and get approval before work begins.</p></div>
 </aside>
 <main class="main">
-<header class="top"><div style="display:flex;align-items:center;gap:12px"><button class="btn mobilemenu" id="menuBtn">☰</button><div class="crumb">Workspace / <b id="crumb">Overview</b></div></div><div class="actions"><button class="btn" id="themeBtn">☾ <span class="hide-mobile">Dark mode</span></button><button class="btn primary" id="newTop">＋ New request</button><div class="avatar">SF</div></div></header>
-<div class="content">
-<section id="view-dashboard" class="view active">
-<div class="welcome"><div><h1>Good work starts with clarity.</h1><p>Here’s what’s happening across your client change requests.</p></div><button class="btn" data-action="export">⇩ Export report</button></div>
-<div class="stats">
-<div class="stat"><div class="stathead">Total requests <span class="staticon">☷</span></div><div class="statnum" id="statTotal">0</div><div class="statfoot">All requests in this workspace</div></div>
-<div class="stat"><div class="stathead">Awaiting decision <span class="staticon">◷</span></div><div class="statnum" id="statPending">0</div><div class="statfoot">Need review or approval</div></div>
-<div class="stat"><div class="stathead">Approved changes <span class="staticon">✓</span></div><div class="statnum" id="statApproved">0</div><div class="statfoot">Cleared to move forward</div></div>
-<div class="stat"><div class="stathead">Estimated extra hours <span class="staticon">⌁</span></div><div class="statnum" id="statHours">0h</div><div class="statfoot">Across all requests</div></div>
+ <header class="top"><div style="display:flex;align-items:center;gap:12px"><button class="btn mobilemenu" id="menuBtn" aria-label="Open menu">☰</button><div class="crumb">Workspace / <b id="crumb">Overview</b></div></div><div class="actions"><button class="btn" id="themeBtn">☾ <span class="hide-mobile">Dark mode</span></button><button class="btn primary" id="newTop">＋ New request</button><div class="avatar" aria-label="ScopeFlow workspace">SF</div></div></header>
+ <div class="content">
+  <section id="view-dashboard" class="view active">
+   <div class="welcome"><div><h1>Good work starts with clarity.</h1><p>Here’s what’s happening across your client change requests.</p></div><button class="btn" data-action="export">⇩ Export report</button></div>
+   <div class="stats">
+    <div class="stat"><div class="stathead">Total requests <span class="staticon">☷</span></div><div class="statnum" id="statTotal">0</div><div class="statfoot">All requests in this workspace</div></div>
+    <div class="stat"><div class="stathead">Awaiting decision <span class="staticon">◷</span></div><div class="statnum" id="statPending">0</div><div class="statfoot">Need review or approval</div></div>
+    <div class="stat"><div class="stathead">Approved changes <span class="staticon">✓</span></div><div class="statnum" id="statApproved">0</div><div class="statfoot">Cleared to move forward</div></div>
+    <div class="stat"><div class="stathead">Estimated extra hours <span class="staticon">⌁</span></div><div class="statnum" id="statHours">0h</div><div class="statfoot">Across all requests</div></div>
+   </div>
+   <div id="overdueBanner" class="alertbanner" role="status" hidden></div>
+   <div class="layout"><div class="panel"><div class="panelhead"><div><h2>Recent change requests</h2><p>Review the latest workspace updates.</p></div><button class="btn small" data-goto="requests">View all →</button></div><div class="tablewrap"><table><thead><tr><th>Request</th><th>Client</th><th>Cost impact</th><th>Status</th></tr></thead><tbody id="recentRows"></tbody></table></div><div id="recentEmpty" class="empty" hidden>No requests yet. Create your first one.</div></div>
+    <div class="panel"><div class="panelhead"><div><h2>Request overview</h2><p>Current status breakdown.</p></div></div><div id="statusBreakdown"></div><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><div class="panelhead"><div><h2>Recent activity</h2><p>Latest workspace events.</p></div><button class="btn small" data-goto="activity">View log →</button></div><div id="recentActivity" class="activity"></div></div></div>
+   <div class="quicklinks"><button class="quick" id="quickNew"><span style="font-size:20px">✚</span><strong>Create a request</strong><span>Document a new client change</span></button><button class="quick" data-goto="requests"><span style="font-size:20px">◉</span><strong>Review requests</strong><span>Filter and update statuses</span></button><button class="quick" data-action="backup"><span style="font-size:20px">⇩</span><strong>Back up your data</strong><span>Download a restorable JSON backup</span></button></div>
+  </section>
+  <section id="view-requests" class="view"><div class="welcome"><div><h1 class="sectiontitle">Change requests</h1><p>Keep every scope change documented and visible.</p></div><button class="btn primary" id="newRequests">＋ New request</button></div><div class="panel"><div class="toolbar"><input class="field search" id="searchInput" placeholder="⌕ Search title, client, or ID…" aria-label="Search requests"><select class="field" id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>In progress</option></select><select class="field" id="priorityFilter" aria-label="Filter by priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select><select class="field" id="sortFilter" aria-label="Sort requests"><option value="updated">Recently updated</option><option value="due">Delivery date</option><option value="cost">Highest cost</option><option value="priority">Highest priority</option></select></div><div class="tablewrap"><table><thead><tr><th>Request</th><th>Client</th><th>Priority</th><th>Hours</th><th>Cost</th><th>Status</th><th></th></tr></thead><tbody id="allRows"></tbody></table></div><div id="allEmpty" class="empty" hidden>No matching requests. Try changing your filters.</div></div></section>
+  <section id="view-activity" class="view"><div class="welcome"><div><h1 class="sectiontitle">Activity log</h1><p>A chronological record of workspace changes.</p></div><button class="btn" data-action="export">⇩ Export CSV</button></div><div class="panel"><div id="allActivity" class="activity"></div><div id="activityEmpty" class="empty" hidden>No activity yet.</div></div></section>
+  <div class="footnote">ScopeFlow demo · Data is stored in this browser on this device. No account or backend required.</div>
+ </div>
+</main>
 </div>
-<div class="layout"><div class="panel"><div class="panelhead"><div><h2>Recent change requests</h2><p>Review the latest workspace updates.</p></div><button class="btn small" data-goto="requests">View all →</button></div><div class="tablewrap"><table><thead><tr><th>Request</th><th>Client</th><th>Cost impact</th><th>Status</th></tr></thead><tbody id="recentRows"></tbody></table></div><div id="recentEmpty" class="empty" hidden>No requests yet. Create your first one.</div></div>
-<div class="panel"><div class="panelhead"><div><h2>Request overview</h2><p>Current status breakdown.</p></div></div><div id="statusBreakdown"></div><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><div class="panelhead"><div><h2>Recent activity</h2><p>Latest workspace events.</p></div><button class="btn small" data-goto="activity">View log →</button></div><div id="recentActivity" class="activity"></div></div></div>
-<div class="quicklinks"><button class="quick" id="quickNew"><span style="font-size:20px">✚</span><strong>Create a request</strong><span>Document a new client change</span></button><button class="quick" data-goto="requests"><span style="font-size:20px">◉</span><strong>Review requests</strong><span>Filter and update statuses</span></button><button class="quick" data-action="export"><span style="font-size:20px">⇩</span><strong>Export your data</strong><span>Download a CSV report</span></button></div>
-</section>
-<section id="view-requests" class="view"><div class="welcome"><div><h1 class="sectiontitle">Change requests</h1><p>Keep every scope change documented and visible.</p></div><button class="btn primary" id="newRequests">＋ New request</button></div><div class="panel"><div class="toolbar"><input class="field search" id="searchInput" placeholder="⌕ Search title, client, or ID…" aria-label="Search requests"><select class="field" id="statusFilter"><option value="">All statuses</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>In progress</option></select><select class="field" id="priorityFilter"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></div><div class="tablewrap"><table><thead><tr><th>Request</th><th>Client</th><th>Priority</th><th>Hours</th><th>Cost</th><th>Status</th><th></th></tr></thead><tbody id="allRows"></tbody></table></div><div id="allEmpty" class="empty" hidden>No matching requests. Try changing your filters.</div></div></section>
-<section id="view-activity" class="view"><div class="welcome"><div><h1 class="sectiontitle">Activity log</h1><p>A chronological record of workspace changes.</p></div><button class="btn" data-action="export">⇩ Export CSV</button></div><div class="panel"><div id="allActivity" class="activity"></div><div id="activityEmpty" class="empty" hidden>No activity yet.</div></div></section>
-<div class="footnote">ScopeFlow demo · Data is stored in this browser on this device. No account or backend required.</div>
-</div></main></div>
-<div class="modalback" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle"><div class="modal"><div class="modalhead"><h2 id="formTitle">New change request</h2><button class="close" data-close="formModal">✕</button></div><form id="requestForm"><div class="formgrid">
-<div class="group full"><label for="title">Request title *</label><input class="field" id="title" name="title" required maxlength="100" placeholder="e.g. Add invoice export to dashboard"></div>
-<div class="group"><label for="client">Client / project *</label><input class="field" id="client" name="client" required maxlength="80" placeholder="e.g. Acme Studio"></div>
-<div class="group"><label for="priority">Priority</label><select class="field" id="priority" name="priority"><option>Medium</option><option>High</option><option>Low</option></select></div>
-<div class="group"><label for="hours">Estimated extra hours *</label><input class="field" id="hours" name="hours" type="number" min="0" max="10000" step=".5" value="4" required></div>
-<div class="group"><label for="rate">Hourly rate (USD) *</label><input class="field" id="rate" name="rate" type="number" min="0" max="100000" step=".01" value="50" required></div>
-<div class="group"><label for="due">Requested delivery date</label><input class="field" id="due" name="due" type="date"></div>
-<div class="group"><label for="status">Initial status</label><select class="field" id="status" name="status"><option>Pending</option><option>Approved</option><option>Rejected</option><option>In progress</option></select></div>
-<div class="group full"><label for="description">Description and reason for change *</label><textarea class="field" id="description" name="description" required maxlength="1200" placeholder="What is changing, why is it needed, and what outcome is expected?"></textarea></div>
-<div class="group full"><label for="impact">Delivery impact</label><input class="field" id="impact" name="impact" maxlength="160" placeholder="e.g. May add 2 days to delivery"></div>
-</div><div class="formactions"><button type="button" class="btn" data-close="formModal">Cancel</button><button type="submit" class="btn primary">Save request</button></div></form></div></div>
-<div class="modalback" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="modal"><div class="modalhead"><h2 id="detailTitle">Request details</h2><button class="close" data-close="detailModal">✕</button></div><div id="detailContent"></div></div></div>
+<div class="modalback" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle"><div class="modal"><div class="modalhead"><h2 id="formTitle">New change request</h2><button class="close" data-close="formModal" aria-label="Close form">✕</button></div><form id="requestForm"><div class="formgrid">
+ <div class="group full"><label for="title">Request title *</label><input class="field" id="title" name="title" required maxlength="100" placeholder="e.g. Add invoice export to dashboard"></div>
+ <div class="group"><label for="client">Client / project *</label><input class="field" id="client" name="client" required maxlength="80" placeholder="e.g. Acme Studio"></div>
+ <div class="group"><label for="priority">Priority</label><select class="field" id="priority" name="priority"><option>Medium</option><option>High</option><option>Low</option></select></div>
+ <div class="group"><label for="hours">Estimated extra hours *</label><input class="field" id="hours" name="hours" type="number" min="0" max="10000" step="0.5" value="4" required></div>
+ <div class="group"><label for="rate">Hourly rate (USD) *</label><input class="field" id="rate" name="rate" type="number" min="0" max="100000" step="0.01" value="50" required></div>
+ <div class="group"><label for="due">Requested delivery date</label><input class="field" id="due" name="due" type="date"></div>
+ <div class="group"><label for="status">Initial status</label><select class="field" id="status" name="status"><option>Pending</option><option>Approved</option><option>Rejected</option><option>In progress</option></select></div>
+ <div class="group full"><label for="description">Description and reason for change *</label><textarea class="field" id="description" name="description" required maxlength="1200" placeholder="What is changing, why is it needed, and what outcome is expected?"></textarea></div>
+ <div class="group full"><label for="impact">Delivery impact</label><input class="field" id="impact" name="impact" maxlength="160" placeholder="e.g. May add 2 days to delivery"></div>
+ </div><div class="formactions"><button type="button" class="btn" data-close="formModal">Cancel</button><button type="submit" class="btn primary">Save request</button></div></form></div></div>
+<div class="modalback" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="modal"><div class="modalhead"><h2 id="detailTitle">Request details</h2><button class="close" data-close="detailModal" aria-label="Close details">✕</button></div><div id="detailContent"></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (()=>{'use strict';
@@ -65,82 +202,68 @@ const seed=[
 {id:'SF-101',title:'Custom invoice fields',client:'Cedar & Co.',priority:'High',hours:8,rate:70,status:'Rejected',due:'',description:'Include two additional custom fields on downloadable invoices.',impact:'Would require changes to current invoice template',created:Date.now()-518400000,updated:Date.now()-259200000}
 ];
 const $=id=>document.getElementById(id);
-const load=(k,f)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch{return f}};
-const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
-let requests=load(KEY,seed),activities=load(ACT,null),currentId=null;
-if(!activities){activities=[{id:1,icon:'✓',text:'SF-103 was approved',detail:'Bloom Market · Checkout confirmation email',time:Date.now()-7200000},{id:2,icon:'◷',text:'SF-104 is awaiting a decision',detail:'Northstar Labs · Client reporting dashboard',time:Date.now()-18000000},{id:3,icon:'✦',text:'Demo workspace initialized',detail:'Sample requests loaded for preview',time:Date.now()-86400000}];save(ACT,activities)}
-let nextNum=Math.max(104,...requests.map(r=>Number((r.id||'').split('-')[1])||0))+1;
+const load=(k,f)=>{try{const v=localStorage.getItem(k);return v===null?f:JSON.parse(v)}catch{return f}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch{return false}};
+let requests=load(KEY,seed);if(!Array.isArray(requests))requests=seed;
+let activities=load(ACT,null);if(!Array.isArray(activities)){activities=[{id:1,icon:'✓',text:'SF-103 was approved',detail:'Bloom Market · Checkout confirmation email',time:Date.now()-7200000},{id:2,icon:'◷',text:'SF-104 is awaiting a decision',detail:'Northstar Labs · Client reporting dashboard',time:Date.now()-18000000},{id:3,icon:'✦',text:'Demo workspace initialized',detail:'Sample requests loaded for preview',time:Date.now()-86400000}];save(ACT,activities)}
+let currentId=null,nextNum=Math.max(104,...requests.map(r=>Number(String(r.id||'').split('-')[1])||0))+1;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(Number(n)||0);
-const when=t=>{let s=Math.max(0,Math.floor((Date.now()-t)/1000));return s<60?'Just now':s<3600?Math.floor(s/60)+' min ago':s<86400?Math.floor(s/3600)+' hr ago':s<604800?Math.floor(s/86400)+' days ago':new Date(t).toLocaleDateString()};
+const when=t=>{let s=Math.max(0,Math.floor((Date.now()-Number(t||0))/1000));return s<60?'Just now':s<3600?Math.floor(s/60)+' min ago':s<86400?Math.floor(s/3600)+' hr ago':s<604800?Math.floor(s/86400)+' days ago':new Date(Number(t)).toLocaleDateString()};
 const fmtDate=s=>s?new Date(s+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}):'Not set';
-const pill=s=>'<span class="pill '+esc(s.replace(' ','-'))+'">'+esc(s)+'</span>';
-function persist(){save(KEY,requests);save(ACT,activities)}
+const pill=s=>'<span class="pill '+esc(String(s).replace(' ','-'))+'">'+esc(s)+'</span>';
+function persist(){const ok1=save(KEY,requests),ok2=save(ACT,activities);if(!ok1||!ok2)toast('Storage may be full. Export a backup to keep your data safe.');return ok1&&ok2}
 function log(text,detail,icon='•'){activities.unshift({id:Date.now()+Math.random(),text,detail,icon,time:Date.now()});activities=activities.slice(0,100);persist()}
-function toast(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),2400)}
-function reqCell(r){return '<td><span class="reqtitle">'+esc(r.title)+'</span><span class="reqid">'+esc(r.id)+'</span></td>'}
+function toast(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),3000)}
+function todayISO(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function isOverdue(r){return !!r.due&&r.due<todayISO()&&['Pending','In progress'].includes(r.status)}
+function reqCell(r){return '<td><span class="reqtitle">'+esc(r.title)+'</span><span class="reqid">'+esc(r.id)+'</span>'+(r.due?'<span class="reqid" style="display:block">Due '+esc(fmtDate(r.due))+(isOverdue(r)?' · <span class="pill Overdue">OVERDUE</span>':'')+'</span>':'')+'</td>'}
 function actHtml(a){return '<div class="activityitem"><div class="activityicon">'+esc(a.icon||'•')+'</div><div><p>'+esc(a.text)+'</p><small>'+esc(a.detail||'Workspace update')+' · '+when(a.time)+'</small></div></div>'}
 function render(){
-const pending=requests.filter(r=>r.status==='Pending').length,approved=requests.filter(r=>r.status==='Approved').length,hours=requests.reduce((a,r)=>a+(+r.hours||0),0);
-$('statTotal').textContent=requests.length;$('statPending').textContent=pending;$('statApproved').textContent=approved;$('statHours').textContent=hours.toLocaleString(undefined,{maximumFractionDigits:1})+'h';$('navCount').textContent=pending;
-const recent=[...requests].sort((a,b)=>b.updated-a.updated).slice(0,5);
-$('recentRows').innerHTML=recent.map(r=>'<tr>'+reqCell(r)+'<td>'+esc(r.client)+'</td><td>'+money(r.hours*r.rate)+'<div class="sub">'+r.hours+' extra hours</div></td><td>'+pill(r.status)+'</td></tr>').join('');$('recentEmpty').hidden=recent.length>0;
-$('statusBreakdown').innerHTML=['Pending','Approved','In progress','Rejected'].map(s=>{let n=requests.filter(r=>r.status===s).length,p=requests.length?n/requests.length*100:0;return '<div class="progressrow"><div class="progresslabel">'+pill(s)+'<strong>'+n+'</strong></div><div class="track"><div class="fill" style="width:'+p+'%"></div></div></div>'}).join('');
-const q=$('searchInput').value.toLowerCase(),sf=$('statusFilter').value,pf=$('priorityFilter').value;
-const filtered=[...requests].filter(r=>(!q||(r.title+' '+r.client+' '+r.id).toLowerCase().includes(q))&&(!sf||r.status===sf)&&(!pf||r.priority===pf)).sort((a,b)=>b.updated-a.updated);
-$('allRows').innerHTML=filtered.map(r=>'<tr>'+reqCell(r)+'<td>'+esc(r.client)+'</td><td>'+pill(r.priority)+'</td><td>'+r.hours+'h</td><td>'+money(r.hours*r.rate)+'</td><td>'+pill(r.status)+'</td><td><button class="btn small" data-open="'+esc(r.id)+'">Open</button></td></tr>').join('');$('allEmpty').hidden=filtered.length>0;
-$('recentActivity').innerHTML=activities.slice(0,5).map(actHtml).join('')||'<p class="sub">No activity yet.</p>';$('allActivity').innerHTML=activities.map(actHtml).join('');$('activityEmpty').hidden=activities.length>0;
+ const pending=requests.filter(r=>r.status==='Pending').length,approved=requests.filter(r=>r.status==='Approved').length,hours=requests.reduce((a,r)=>a+(Number(r.hours)||0),0),overdue=requests.filter(isOverdue);
+ $('statTotal').textContent=requests.length;$('statPending').textContent=pending;$('statApproved').textContent=approved;$('statHours').textContent=hours.toLocaleString(undefined,{maximumFractionDigits:1})+'h';$('navCount').textContent=pending;
+ $('overdueBanner').hidden=overdue.length===0;$('overdueBanner').textContent=overdue.length?'Attention: '+overdue.length+' open '+(overdue.length===1?'request is':'requests are')+' past the requested delivery date. Review the highlighted requests below.':'';
+ const recent=[...requests].sort((a,b)=>(Number(b.updated)||0)-(Number(a.updated)||0)).slice(0,5);
+ $('recentRows').innerHTML=recent.map(r=>'<tr>'+reqCell(r)+'<td>'+esc(r.client)+'</td><td>'+money(r.hours*r.rate)+'<div class="sub">'+esc(r.hours)+' extra hours</div></td><td>'+pill(r.status)+'</td></tr>').join('');$('recentEmpty').hidden=recent.length>0;
+ $('statusBreakdown').innerHTML=['Pending','Approved','In progress','Rejected'].map(s=>{let n=requests.filter(r=>r.status===s).length,p=requests.length?n/requests.length*100:0;return '<div class="progressrow"><div class="progresslabel">'+pill(s)+'<strong>'+n+'</strong></div><div class="track"><div class="fill" style="width:'+p+'%"></div></div></div>'}).join('');
+ const q=$('searchInput').value.trim().toLowerCase(),sf=$('statusFilter').value,pf=$('priorityFilter').value,sort=$('sortFilter').value;
+ const filtered=[...requests].filter(r=>(!q||(r.title+' '+r.client+' '+r.id).toLowerCase().includes(q))&&(!sf||r.status===sf)&&(!pf||r.priority===pf));
+ filtered.sort((a,b)=>{if(sort==='due')return (a.due||'9999-99-99').localeCompare(b.due||'9999-99-99');if(sort==='cost')return b.hours*b.rate-a.hours*a.rate;if(sort==='priority'){const rank={High:3,Medium:2,Low:1};return rank[b.priority]-rank[a.priority]}return (Number(b.updated)||0)-(Number(a.updated)||0)});
+ $('allRows').innerHTML=filtered.map(r=>'<tr>'+reqCell(r)+'<td>'+esc(r.client)+'</td><td>'+pill(r.priority)+'</td><td>'+esc(r.hours)+'h</td><td>'+money(r.hours*r.rate)+'</td><td>'+pill(r.status)+'</td><td><button class="btn small" data-open="'+esc(r.id)+'">Open</button></td></tr>').join('');$('allEmpty').hidden=filtered.length>0;
+ $('recentActivity').innerHTML=activities.slice(0,5).map(actHtml).join('')||'<p class="sub">No activity yet.</p>';$('allActivity').innerHTML=activities.map(actHtml).join('');$('activityEmpty').hidden=activities.length>0;
 }
 function showView(v){document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+v));document.querySelectorAll('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===v));$('crumb').textContent=({dashboard:'Overview',requests:'Change requests',activity:'Activity log'})[v]||v;$('sidebar').classList.remove('open')}
 function openForm(){delete $('formModal').dataset.edit;$('requestForm').reset();$('hours').value=4;$('rate').value=50;$('formTitle').textContent='New change request';$('formModal').classList.add('open');setTimeout(()=>$('title').focus(),50)}
 function closeModal(id){$(id).classList.remove('open')}
-function openDetail(id){const r=requests.find(x=>x.id===id);if(!r)return;currentId=id;$('detailTitle').textContent=r.id+' · '+r.title;$('detailContent').innerHTML='<div style="display:flex;gap:8px;flex-wrap:wrap">'+pill(r.status)+pill(r.priority)+'<span class="pill">'+esc(r.client)+'</span></div><p class="desc">'+esc(r.description)+'</p><div class="detailgrid"><div class="detailbox"><small>Estimated extra effort</small><strong>'+r.hours+' hours</strong></div><div class="detailbox"><small>Estimated cost impact</small><strong>'+money(r.hours*r.rate)+'</strong></div><div class="detailbox"><small>Requested delivery date</small><strong>'+fmtDate(r.due)+'</strong></div><div class="detailbox"><small>Hourly rate</small><strong>'+money(r.rate)+'/hour</strong></div><div class="detailbox" style="grid-column:1/-1"><small>Delivery impact</small><strong>'+esc(r.impact||'Not specified')+'</strong></div><div class="detailbox"><small>Created</small><strong>'+new Date(r.created).toLocaleDateString()+'</strong></div><div class="detailbox"><small>Last updated</small><strong>'+when(r.updated)+'</strong></div></div><div class="detailactions"><button class="btn" data-status="Pending">Mark pending</button><button class="btn" data-status="In progress">In progress</button><button class="btn" data-status="Rejected">Reject</button><button class="btn primary" data-status="Approved">Approve</button><button class="btn" data-edit="'+esc(r.id)+'">Edit request</button><button class="btn" style="color:var(--red)" data-delete="'+esc(r.id)+'">Delete</button></div>';$('detailModal').classList.add('open')}
-function changeStatus(id,status){let r=requests.find(x=>x.id===id);if(!r)return;r.status=status;r.updated=Date.now();log(id+' was marked '+status.toLowerCase(),r.client+' · '+r.title,status==='Approved'?'✓':status==='Rejected'?'×':'◷');persist();render();openDetail(id);toast('Request updated to '+status)}
-function editRequest(id){let r=requests.find(x=>x.id===id);if(!r)return;closeModal('detailModal');$('requestForm').reset();for(let k of ['title','client','priority','hours','rate','due','status','description','impact'])$(k).value=r[k]??'';$('formTitle').textContent='Edit '+r.id;$('formModal').dataset.edit=id;$('formModal').classList.add('open')}
-function exportCSV(){const cols=['id','title','client','priority','hours','rate','costImpact','status','due','description','impact','created','updated'];const rows=[cols.join(','),...requests.map(r=>cols.map(k=>{let v=k==='costImpact'?r.hours*r.rate:r[k]??'';return '"'+String(v).replace(/"/g,'""')+'"'}).join(','))];const blob=new Blob(['\ufeff'+rows.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='scopeflow-change-requests.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('CSV export prepared')}
-
-function backupData(){
-  const backup={
-    app:'ScopeFlow',
-    version:1,
-    exportedAt:new Date().toISOString(),
-    requests:requests,
-    activities:activities
-  };
-  const blob=new Blob(
-    [JSON.stringify(backup,null,2)],
-    {type:'application/json'}
-  );
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  a.download='scopeflow-backup.json';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  toast('Backup downloaded successfully');
-}
-
+function openDetail(id){const r=requests.find(x=>x.id===id);if(!r)return;currentId=id;$('detailTitle').textContent=r.id+' · '+r.title;$('detailContent').innerHTML='<div style="display:flex;gap:8px;flex-wrap:wrap">'+pill(r.status)+pill(r.priority)+'<span class="pill">'+esc(r.client)+'</span>'+(isOverdue(r)?'<span class="pill Overdue">Overdue</span>':'')+'</div><p class="desc">'+esc(r.description)+'</p><div class="detailgrid"><div class="detailbox"><small>Estimated extra effort</small><strong>'+esc(r.hours)+' hours</strong></div><div class="detailbox"><small>Estimated cost impact</small><strong>'+money(r.hours*r.rate)+'</strong></div><div class="detailbox"><small>Requested delivery date</small><strong>'+fmtDate(r.due)+'</strong></div><div class="detailbox"><small>Hourly rate</small><strong>'+money(r.rate)+'/hour</strong></div><div class="detailbox" style="grid-column:1/-1"><small>Delivery impact</small><strong>'+esc(r.impact||'Not specified')+'</strong></div><div class="detailbox"><small>Created</small><strong>'+new Date(r.created).toLocaleDateString()+'</strong></div><div class="detailbox"><small>Last updated</small><strong>'+when(r.updated)+'</strong></div></div><div class="detailactions"><button class="btn" data-status="Pending">Mark pending</button><button class="btn" data-status="In progress">In progress</button><button class="btn" data-status="Rejected">Reject</button><button class="btn primary" data-status="Approved">Approve</button><button class="btn" data-edit="'+esc(r.id)+'">Edit request</button><button class="btn" style="color:var(--red)" data-delete="'+esc(r.id)+'">Delete</button></div>';$('detailModal').classList.add('open')}
+function changeStatus(id,status){const r=requests.find(x=>x.id===id);if(!r)return;r.status=status;r.updated=Date.now();log(id+' was marked '+status.toLowerCase(),r.client+' · '+r.title,status==='Approved'?'✓':status==='Rejected'?'×':'◷');render();openDetail(id);toast('Request updated to '+status)}
+function editRequest(id){const r=requests.find(x=>x.id===id);if(!r)return;closeModal('detailModal');$('requestForm').reset();for(const k of ['title','client','priority','hours','rate','due','status','description','impact'])$(k).value=r[k]??'';$('formTitle').textContent='Edit '+r.id;$('formModal').dataset.edit=id;$('formModal').classList.add('open')}
+function downloadBlob(content,type,filename){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function exportCSV(){const cols=['id','title','client','priority','hours','rate','costImpact','status','due','description','impact','created','updated'];const rows=[cols.join(','),...requests.map(r=>cols.map(k=>{const v=k==='costImpact'?r.hours*r.rate:r[k]??'';return '"'+String(v).replace(/"/g,'""')+'"'}).join(','))];downloadBlob('\ufeff'+rows.join('\r\n'),'text/csv;charset=utf-8','scopeflow-change-requests.csv');toast('CSV export prepared')}
+function backupData(){const backup={app:'ScopeFlow',version:1,exportedAt:new Date().toISOString(),requests,activities};downloadBlob(JSON.stringify(backup,null,2),'application/json;charset=utf-8','scopeflow-backup.json');log('Workspace backup downloaded','JSON backup contains requests and activity history','⇩');toast('Backup downloaded successfully')}
+function validBackupRequest(r){return !!r&&typeof r==='object'&&typeof r.id==='string'&&/^SF-\d+$/.test(r.id)&&typeof r.title==='string'&&r.title.trim().length>0&&r.title.length<=100&&typeof r.client==='string'&&r.client.trim().length>0&&r.client.length<=80&&['High','Medium','Low'].includes(r.priority)&&['Pending','Approved','Rejected','In progress'].includes(r.status)&&Number.isFinite(Number(r.hours))&&Number(r.hours)>=0&&Number(r.hours)<=10000&&Number.isFinite(Number(r.rate))&&Number(r.rate)>=0&&Number(r.rate)<=100000&&typeof r.description==='string'&&r.description.length<=1200&&typeof r.impact==='string'&&r.impact.length<=160&&(r.due===''||r.due===undefined||/^\d{4}-\d{2}-\d{2}$/.test(r.due))&&Number.isFinite(Number(r.created))&&Number.isFinite(Number(r.updated))}
+function restoreBackupFile(file){if(file.size>5*1024*1024){alert('The backup file is too large (maximum 5 MB).');$('restoreInput').value='';return}const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(String(reader.result));if(!data||data.app!=='ScopeFlow'||data.version!==1||!Array.isArray(data.requests)||!Array.isArray(data.activities)||data.requests.length>10000||data.activities.length>5000||!data.requests.every(validBackupRequest)||!data.activities.every(a=>a&&typeof a.text==='string'&&a.text.length<=500&&Number.isFinite(Number(a.time))))throw new Error('This is not a valid ScopeFlow backup.');if(!confirm('Restore '+data.requests.length+' requests from this backup? Current local request data will be replaced.'))return;requests=data.requests.map(r=>({...r,hours:Number(r.hours),rate:Number(r.rate),due:r.due||'',created:Number(r.created),updated:Number(r.updated)}));activities=data.activities.map(a=>({id:a.id??Date.now()+Math.random(),icon:String(a.icon||'•').slice(0,8),text:a.text,detail:String(a.detail||'Workspace update').slice(0,500),time:Number(a.time)})).slice(0,100);nextNum=Math.max(104,...requests.map(r=>Number((r.id||'').split('-')[1])||0))+1;log('Workspace data restored from backup','Imported '+requests.length+' requests','↥');persist();render();toast('Backup restored successfully')}catch(err){alert('Could not restore backup: '+(err&&err.message?err.message:'Invalid file'))}finally{$('restoreInput').value=''}};reader.onerror=()=>{alert('Could not read that file. Please try again.');$('restoreInput').value=''};reader.readAsText(file)}
 document.addEventListener('click',e=>{
-let v=e.target.closest('[data-view]');if(v)showView(v.dataset.view);
-let go=e.target.closest('[data-goto]');if(go)showView(go.dataset.goto);
-let op=e.target.closest('[data-open]');if(op)openDetail(op.dataset.open);
-let cl=e.target.closest('[data-close]');if(cl)closeModal(cl.dataset.close);
-let st=e.target.closest('[data-status]');if(st&&currentId)changeStatus(currentId,st.dataset.status);
-let ed=e.target.closest('[data-edit]');if(ed)editRequest(ed.dataset.edit);
-let del=e.target.closest('[data-delete]');if(del){let r=requests.find(x=>x.id===del.dataset.delete);if(r&&confirm('Delete '+r.id+' — '+r.title+'?')){requests=requests.filter(x=>x.id!==r.id);log(r.id+' was deleted',r.title,'×');persist();render();closeModal('detailModal');toast('Request deleted')}}
-let ac=e.target.closest('[data-action]');if(ac?.dataset.action==='export')exportCSV();if(ac?.dataset.action==='reset'&&confirm('Reset all local changes and restore the sample data?')){requests=JSON.parse(JSON.stringify(seed));activities=[];log('Demo data was reset','Sample requests restored','↺');render();toast('Demo data reset')}
+ const v=e.target.closest('[data-view]');if(v)showView(v.dataset.view);
+ const go=e.target.closest('[data-goto]');if(go)showView(go.dataset.goto);
+ const op=e.target.closest('[data-open]');if(op)openDetail(op.dataset.open);
+ const cl=e.target.closest('[data-close]');if(cl)closeModal(cl.dataset.close);
+ const st=e.target.closest('[data-status]');if(st&&currentId)changeStatus(currentId,st.dataset.status);
+ const ed=e.target.closest('[data-edit]');if(ed)editRequest(ed.dataset.edit);
+ const del=e.target.closest('[data-delete]');if(del){const r=requests.find(x=>x.id===del.dataset.delete);if(r&&confirm('Delete '+r.id+' — '+r.title+'?')){requests=requests.filter(x=>x.id!==r.id);log(r.id+' was deleted',r.title,'×');render();closeModal('detailModal');toast('Request deleted')}}
+ const ac=e.target.closest('[data-action]');if(ac?.dataset.action==='export')exportCSV();if(ac?.dataset.action==='backup')backupData();if(ac?.dataset.action==='restore')$('restoreInput').click();if(ac?.dataset.action==='reset'&&confirm('Reset all local changes and restore the sample data? This replaces the data saved in this browser.')){requests=JSON.parse(JSON.stringify(seed));activities=[];log('Demo data was reset','Sample requests restored','↺');render();toast('Demo data reset')}
 });
 $('newTop').onclick=$('newRequests').onclick=$('quickNew').onclick=openForm;
-$('searchInput').oninput=render;$('statusFilter').onchange=render;$('priorityFilter').onchange=render;
-$('themeBtn').onclick=()=>{let t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem(THEME,t);$('themeBtn').innerHTML=(t==='dark'?'☀ <span class="hide-mobile">Light mode</span>':'☾ <span class="hide-mobile">Dark mode</span>')};
+$('searchInput').oninput=render;$('statusFilter').onchange=render;$('priorityFilter').onchange=render;$('sortFilter').onchange=render;
+$('restoreInput').addEventListener('change',e=>{const file=e.target.files&&e.target.files[0];if(file)restoreBackupFile(file)});
+$('themeBtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem(THEME,t)}catch{};$('themeBtn').innerHTML=(t==='dark'?'☀ <span class="hide-mobile">Light mode</span>':'☾ <span class="hide-mobile">Dark mode</span>')};
 $('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');
 document.querySelectorAll('.modalback').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modalback.open').forEach(m=>closeModal(m.id))});
-$('requestForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.currentTarget),editing=$('formModal').dataset.edit,d={title:f.get('title').trim(),client:f.get('client').trim(),priority:f.get('priority'),hours:Number(f.get('hours')),rate:Number(f.get('rate')),due:f.get('due'),status:f.get('status'),description:f.get('description').trim(),impact:f.get('impact').trim()};if(!d.title||!d.client||!d.description||d.hours<0||d.rate<0){toast('Please check the required fields');return}if(editing){let r=requests.find(x=>x.id===editing);if(r){Object.assign(r,d,{updated:Date.now()});log(r.id+' was edited',r.client+' · '+r.title,'✎');toast('Request updated')}delete $('formModal').dataset.edit}else{let r={...d,id:'SF-'+nextNum++,created:Date.now(),updated:Date.now()};requests.unshift(r);log(r.id+' was created',r.client+' · '+r.title,'＋');toast('Request created')}persist();render();closeModal('formModal');showView('requests')});
-const saved=localStorage.getItem(THEME);if(saved){document.documentElement.dataset.theme=saved;$('themeBtn').innerHTML=saved==='dark'?'☀ <span class="hide-mobile">Light mode</span>':'☾ <span class="hide-mobile">Dark mode</span>'}
+$('requestForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget),editing=$('formModal').dataset.edit,d={title:String(f.get('title')||'').trim(),client:String(f.get('client')||'').trim(),priority:f.get('priority'),hours:Number(f.get('hours')),rate:Number(f.get('rate')),due:f.get('due'),status:f.get('status'),description:String(f.get('description')||'').trim(),impact:String(f.get('impact')||'').trim()};if(!d.title||!d.client||!d.description||!Number.isFinite(d.hours)||!Number.isFinite(d.rate)||d.hours<0||d.hours>10000||d.rate<0||d.rate>100000){toast('Please check required fields and numeric limits.');return}if(editing){const r=requests.find(x=>x.id===editing);if(r){Object.assign(r,d,{updated:Date.now()});log(r.id+' was edited',r.client+' · '+r.title,'✎');toast('Request updated')}delete $('formModal').dataset.edit}else{const r={...d,id:'SF-'+nextNum++,created:Date.now(),updated:Date.now()};requests.unshift(r);log(r.id+' was created',r.client+' · '+r.title,'＋');toast('Request created')}persist();render();closeModal('formModal');showView('requests')});
+try{const saved=localStorage.getItem(THEME);if(saved==='dark'||saved==='light'){document.documentElement.dataset.theme=saved;$('themeBtn').innerHTML=saved==='dark'?'☀ <span class="hide-mobile">Light mode</span>':'☾ <span class="hide-mobile">Dark mode</span>'}}catch{}
 render();
 })();
 </script>
-</body></html>
+</body>
+</html>
