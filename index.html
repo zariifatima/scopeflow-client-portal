@@ -98,6 +98,30 @@ function openDetail(id){const r=requests.find(x=>x.id===id);if(!r)return;current
 function changeStatus(id,status){let r=requests.find(x=>x.id===id);if(!r)return;r.status=status;r.updated=Date.now();log(id+' was marked '+status.toLowerCase(),r.client+' · '+r.title,status==='Approved'?'✓':status==='Rejected'?'×':'◷');persist();render();openDetail(id);toast('Request updated to '+status)}
 function editRequest(id){let r=requests.find(x=>x.id===id);if(!r)return;closeModal('detailModal');$('requestForm').reset();for(let k of ['title','client','priority','hours','rate','due','status','description','impact'])$(k).value=r[k]??'';$('formTitle').textContent='Edit '+r.id;$('formModal').dataset.edit=id;$('formModal').classList.add('open')}
 function exportCSV(){const cols=['id','title','client','priority','hours','rate','costImpact','status','due','description','impact','created','updated'];const rows=[cols.join(','),...requests.map(r=>cols.map(k=>{let v=k==='costImpact'?r.hours*r.rate:r[k]??'';return '"'+String(v).replace(/"/g,'""')+'"'}).join(','))];const blob=new Blob(['\ufeff'+rows.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='scopeflow-change-requests.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('CSV export prepared')}
+
+function backupData(){
+  const backup={
+    app:'ScopeFlow',
+    version:1,
+    exportedAt:new Date().toISOString(),
+    requests:requests,
+    activities:activities
+  };
+  const blob=new Blob(
+    [JSON.stringify(backup,null,2)],
+    {type:'application/json'}
+  );
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='scopeflow-backup.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  toast('Backup downloaded successfully');
+}
+
 document.addEventListener('click',e=>{
 let v=e.target.closest('[data-view]');if(v)showView(v.dataset.view);
 let go=e.target.closest('[data-goto]');if(go)showView(go.dataset.goto);
